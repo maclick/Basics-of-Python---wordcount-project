@@ -1,3 +1,4 @@
+import os
 from counting_words import read_from_files
 from counting_words import count_words_from_standard_input
 from wordcount_options import choose_valid_option
@@ -11,6 +12,10 @@ from wordcount_options import print_results_stored_in_file
 
 
 def main():
+    path = "answers"
+    if not os.path.exists(path):
+        os.makedirs(path)
+
     print_init_message()
     running = "1"
     while running == "1":
