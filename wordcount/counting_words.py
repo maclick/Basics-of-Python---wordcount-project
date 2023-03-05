@@ -14,10 +14,10 @@ def count_words(words):
     return ans
 
 
-def count_words_from_standard_input():
+def count_words_from_standard_input(output_file):
     contents = input()
     words = contents.split()
-    print_single_result(count_words(words), "standard input")
+    print_single_result(count_words(words), "standard input", output_file)
 
 
 def count_words_in_single_file(filename):
@@ -28,10 +28,11 @@ def count_words_in_single_file(filename):
         return {}
     file_content = f.read()
     words = file_content.split()
+    f.close()
     return count_words(words)
 
 
-def read_from_files(chosen_option):
+def read_from_files(chosen_option, output_file):
     sum_all = False
     if chosen_option in ['1', '3']:
         sum_all = True
@@ -57,4 +58,4 @@ def read_from_files(chosen_option):
         ans = {}
         for wordcount in wordcount_for_all_files.values():
             ans.update(wordcount)
-        print_single_result(ans, "all files")
+        print_single_result(ans, "all files", output_file)

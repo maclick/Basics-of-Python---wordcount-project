@@ -24,3 +24,4 @@ python3 wordcount
 2. Count words from many specific files
 3. Count words from all files in a `resources` directory
 4. Sum the word counts from many files
+5. Store the results in a file in a `answers` directory

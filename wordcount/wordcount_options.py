@@ -1,3 +1,6 @@
+from os import sep as system_separator
+
+
 def choose_valid_option(permitted_options):
     chosen_option = input()
     while chosen_option not in permitted_options:
@@ -39,3 +42,16 @@ def print_do_you_want_to_continue():
 
 def print_provide_filenames():
     print("\nPlease provide filenames separated by spaces (for example: file1.txt file2.txt): ", end='')
+
+
+def read_output_file():
+    return input("\033[0;32m Provide output file name (or leave empty for standard output)\033[0m \nIf the file exist "
+                 "it will append the results at the end of this file\nThis file will be stored in the answers"
+                 "directory\nFilename: ")
+
+
+def print_results_stored_in_file(output_file):
+    if output_file == "":
+        print("Look above for the results")
+    else:
+        print("Results stored are in a file:", "\033[0;32m answers" + system_separator + output_file + "\033[0m")
