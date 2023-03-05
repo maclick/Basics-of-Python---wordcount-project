@@ -1,6 +1,7 @@
 from printing_results import print_single_result
 from file_menagement import find_all_files_in_resources
 from wordcount_options import print_provide_filenames
+from os import sep as system_separator
 
 
 def count_words(words):
@@ -20,7 +21,11 @@ def count_words_from_standard_input():
 
 
 def count_words_in_single_file(filename):
-    f = open(filename)
+    try:
+        f = open(filename)
+    except FileNotFoundError:
+        print("File ", filename, " not found")
+        return {}
     file_content = f.read()
     words = file_content.split()
     return count_words(words)
@@ -37,7 +42,7 @@ def read_from_files(chosen_option):
         filenames = input().split()
     files = []
     for filename in filenames:
-        files.append("resources/" + filename)
+        files.append("resources" + system_separator + filename)
 
     wordcount_for_all_files = {}
     for file in files:
@@ -46,7 +51,7 @@ def read_from_files(chosen_option):
 
     if not sum_all:
         for file, wordcount in wordcount_for_all_files.items():
-            filename = file.split("/")[-1]
+            filename = file.split(system_separator)[-1]
             print_single_result(wordcount, filename)
     else:
         ans = {}
