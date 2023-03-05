@@ -11,8 +11,12 @@ from wordcount_options import read_output_file
 from wordcount_options import print_results_stored_in_file
 
 
+def get_answers_dir():
+    return __file__.replace("wordcount" + os.sep + "__main__.py", "answers")
+
+
 def main():
-    path = "answers"
+    path = get_answers_dir()
     if not os.path.exists(path):
         os.makedirs(path)
 
@@ -21,13 +25,15 @@ def main():
     while running == "1":
         print_input_options()
         chosen_option = choose_valid_option(['1', '2'])
-        output_file = read_output_file()
+
         if chosen_option == "1":
+            output_file = read_output_file()
             print_standard_input_info()
             count_words_from_standard_input(output_file)
-        elif chosen_option == "2":
+        else:
             print_files_input_options()
             chosen_option = choose_valid_option(['1', '2', '3', '4'])
+            output_file = read_output_file()
             read_from_files(chosen_option, output_file)
         print_results_stored_in_file(output_file)
         print_do_you_want_to_continue()

@@ -45,13 +45,18 @@ def print_provide_filenames():
 
 
 def read_output_file():
-    return input("\033[0;32m Provide output file name (or leave empty for standard output)\033[0m \nIf the file exist "
+    return input("\033[0;32mProvide output file name (or leave empty for standard output)\033[0m \nIf the file exist "
                  "it will append the results at the end of this file\nThis file will be stored in the answers"
                  "directory\nFilename: ")
+
+
+def get_answers_dir():
+    return __file__.replace("wordcount" + system_separator + "wordcount_options.py", "answers" + system_separator)
 
 
 def print_results_stored_in_file(output_file):
     if output_file == "":
         print("Look above for the results")
     else:
-        print("Results stored are in a file:", "\033[0;32m answers" + system_separator + output_file + "\033[0m")
+        print("Results stored are in a file:", "\033[0;32m" + get_answers_dir() + output_file
+              + "\033[0m")
